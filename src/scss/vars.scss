@@ -1,0 +1,13 @@
+$font: 112.5;
+@mixin font($font:42px){
+  font-size:$font;
+  [data-dpr="1"] &{
+    font-size: $font/3;
+  }
+  [data-dpr="2"] &{
+    font-size: $font/1.6;
+  }
+  [data-dpr="3"] &{
+    font-size: $font;
+  }
+}

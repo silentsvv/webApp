@@ -6,23 +6,35 @@
           今日囧图
         </div>
         <div class="content__box clearfix">
-           <div class="box">
+           <div class="box" v-for="data in dataList">
             <div class="box__img">
-              <img src="http://s1.dwstatic.com/group1/M00/E2/F2/dcbc69575564374aece9fc3ad9df1c0e.gif" alt="">
+              <img :src="data.imgSrc" alt="">
             </div>
-            <div class="box__text">全球搞笑GIF图第1868弹：这火锅怎么越吃越热的啊</div>
-           </div>
-           <div class="box">
-            <div class="box__img">
-              <img src="http://s1.dwstatic.com/group1/M00/E2/F2/dcbc69575564374aece9fc3ad9df1c0e.gif" alt="">
-            </div>
-            <div class="box__text">全球搞笑GIF图第1868弹：这火锅怎么越吃越热的啊</div>
+            <div class="box__text">{{data.title}}</div>
            </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+  export default {
+    data () {
+      return {
+        dataList: []
+      }
+    },
+    mounted () {
+      fetch('http://localhost:3000/hello').then((res) => {
+        return res.text()
+      }).then((res) => {
+        this.dataList = JSON.parse(res)
+        console.log(this.dataList)
+      })
+    }
+  }
+</script>
 
 <style lang='scss'>
   @import '../../scss/vars.scss';

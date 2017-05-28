@@ -1,16 +1,16 @@
 <template>
-  <div id="index">
+  <div id="fun">
     <div class="page">
       <div class="content">
         <div class="content__header">
-          今日囧图
+          测试  
         </div>
         <div class="content__box clearfix">
-          <div class="box" v-for="data in dataList" @click="toPath(data.link)">
+          <div class="box" v-for="data in dataList">
             <div class="box__img">
-              <img :src="data.imgSrc" alt="">
+              <img :src="data" alt="">
             </div>
-            <div class="box__text">{{data.title}}</div>
+            <!-- <div class="box__text">{{data.title}}</div> -->
           </div>
         </div>
       </div>
@@ -26,29 +26,24 @@
       }
     },
     methods: {
-      toPath (url) {
-        this.$router.push({name: 'fun', path: '/fun', params: { url: url }})
-      }
     },
     mounted () {
-      // let a = {
-      //   'url': 'http://tu.duowan.com/scroll/134023.html'
-      // }
-      // fetch('http://localhost:3000/get', {
-      //   method: 'post',
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body: JSON.stringify(a)
-      // }).then((res) => {
-      //   return res.text()
-      // }).then((res) => {
-      // })
-      fetch('http://localhost:3000/hello').then((res) => {
+      console.log(this.$route.params)
+      let a = {
+        'url': this.$route.params.url.replace('gallery', 'scroll')
+      }
+      fetch('http://localhost:3000/get', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(a)
+      }).then((res) => {
         return res.text()
       }).then((res) => {
-        this.dataList = JSON.parse(res)
-        console.log(this.dataList)
+        console.log(res)
+        let response = JSON.parse(res)
+        this.dataList = response
       })
     }
   }

@@ -30,7 +30,7 @@
     mounted () {
       console.log(this.$route.params)
       let a = {
-        'url': this.$route.params.url.replace('gallery', 'scroll')
+        'url': 'http://tu.duowan.com/gallery/134026.html'.replace('gallery', 'scroll')
       }
       fetch('http://localhost:3000/get', {
         method: 'post',

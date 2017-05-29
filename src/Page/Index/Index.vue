@@ -31,24 +31,13 @@
       }
     },
     mounted () {
-      // let a = {
-      //   'url': 'http://tu.duowan.com/scroll/134023.html'
-      // }
-      // fetch('http://localhost:3000/get', {
-      //   method: 'post',
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body: JSON.stringify(a)
-      // }).then((res) => {
-      //   return res.text()
-      // }).then((res) => {
-      // })
-      fetch('http://localhost:3000/hello').then((res) => {
+      console.log('')
+      fetch('http://localhost:3000/hello', {
+        method: 'get'
+      }).then((res) => {
         return res.text()
       }).then((res) => {
         this.dataList = JSON.parse(res)
-        console.log(this.dataList)
       })
     }
   }
